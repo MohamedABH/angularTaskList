@@ -1,0 +1,16 @@
+<li>
+    Name: 
+        @if (editing) {
+            <input type="text" (change)="nameChange($event)">
+        }
+        @else {
+            {{task.name}}
+        }
+    Status: 
+        <select (change)="onChange($event)">
+            <option [value]="false" [selected]="!task.status">Ongoing</option>
+            <option [value]="true" [selected]="task.status">Finished</option>
+        </select>
+    <button (click)="delete()">Delete</button>
+    <button (click)="edit()">{{editing?"Save":"Edit"}}</button>
+</li>

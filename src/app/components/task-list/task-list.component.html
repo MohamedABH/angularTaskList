@@ -1,0 +1,17 @@
+<app-task-form (newTaskEvent)="addTask($event)"></app-task-form>
+
+Show: 
+<select (change)="changeShowValue($event)">
+    @for (status of statusList; track $index) {
+        <option [value]="status">{{status}}</option>
+    }
+</select>
+<ul>
+    @for (task of taskList; track $index) {
+        @if ((showValue=="Finished")==task.status || showValue=="All") {
+            <app-single-task [task]="task" (taskDeletionEvent)="taskDeletion($index)" (taskUpdateEvent)="taskUpdate($index, $event)"></app-single-task>
+        }
+    }
+</ul>
+
+<button (click)="logList()">Log list</button>
